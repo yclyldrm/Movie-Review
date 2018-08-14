@@ -3,7 +3,8 @@ class MoviesController < ApplicationController
   before_action :authenticate_user!, except: [:index,:show]
 
   def index
-    @movies = Movie.all
+    @search = Movie.ransack(params[:q])
+    @movies = @search.result
   end
 
   def show
@@ -16,6 +17,7 @@ class MoviesController < ApplicationController
 
   def edit
   end
+
 
   def create
     @movie = current_user.movies.build(movie_params)

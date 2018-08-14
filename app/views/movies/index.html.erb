@@ -1,3 +1,14 @@
+<div style="text-align: center">
+      <%= search_form_for @search ,method: :get do |f| %>
+            <p>
+              <%= f.label :title_cont ,'Search a film'%>
+              <%= f.search_field :title_cont %>
+              <%= f.submit 'Search' %>
+            </p>
+          <% end %>
+</div>
+
+ 
 <% if !user_signed_in? %>
   <div class="jumbotron">
     <h1>Your Favorite Movies Reviewed</h1>
@@ -5,6 +16,7 @@
     <p><%= link_to "Sign Up To Write A Review", new_user_registration_path, class: "btn btn-primary btn-lg" %></p>
   </div>
 <% end %>
+
 
 <div class="row">
   <% @movies.each do |movie| %>
@@ -15,3 +27,4 @@
     </div>
   <% end %>
 </div>
+

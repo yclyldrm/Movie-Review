@@ -39,9 +39,9 @@
           <%= link_to 'Write review', new_movie_review_path(@movie), class: "btn btn-danger" %>
         <% else %>
           <% @reviews.each do |review| %>
-          <div class="review">
+          <div class="reviews">
             <h3><%= review.user.name %></h3>
-            <p><%= review.rating %></p>
+             <div class="star-rating" data-score= <%= review.rating %> ></div>
             <p><%= review.comment %></p>
           <% end %>
         </div>
@@ -51,3 +51,12 @@
   </div>
 </div>
 
+<script>
+    $('.star-rating').raty({
+      path: '/assets/',
+      readOnly: true,
+      score: function() {
+            return $(this).attr('data-score');
+    }
+  });
+</script>
